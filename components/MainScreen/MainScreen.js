@@ -81,6 +81,8 @@ const MainScreen = () => {
     silverAskSpread,
   ]);
 
+
+
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentTime(new Date());
@@ -140,32 +142,8 @@ const MainScreen = () => {
 
     return () => socket.disconnect();
   }, [serverURL]);
-  const { goldData, silverData } = useSpotRate();
 
 
-  /* ---------------- HELPERS ---------------- */
-
-  const getBidAskValues = (metal) => {
-    if (
-      metal === "gold" ||
-      metal === "gold kilobar" ||
-      metal === "gold ten tola"
-    ) {
-      return {
-        bid: parseFloat(goldData?.bid) || 0,
-        ask: parseFloat(goldData?.ask) || 0,
-      };
-    }
-
-    if (metal === "silver") {
-      return {
-        bid: parseFloat(silverData?.bid) || 0,
-        ask: parseFloat(silverData?.ask) || 0,
-      };
-    }
-
-    return { bid: 0, ask: 0 };
-  };
 
   /* ---------------- API ---------------- */
 
@@ -196,6 +174,14 @@ const MainScreen = () => {
     }
   };
 
+
+
+  const GoldbiddingPrice = marketData?.Gold?.bid + goldBidSpread
+  const GoldaskingPrice = GoldbiddingPrice + 0.5 + goldAskSpread
+
+  const SilverbiddingPrice = Number(marketData?.Silver?.bid + silverBidSpread);
+  const SilverAskingPrice = Number((SilverbiddingPrice + 0.05 + silverAskSpread).toFixed(3));
+
   return (
     <div className={styles.mainscreen_Section}>
 
@@ -213,8 +199,8 @@ const MainScreen = () => {
               </li>
               {commodities.map((item, index) => {
                 const metalName = getMetalName(item.metal.toLowerCase());
-                const bid = marketData?.Gold?.bid;
-                const ask = marketData?.Gold?.offer;
+                const bid = GoldbiddingPrice;
+                const ask = GoldaskingPrice;
                 const unitMultiplier = {
                   GM: 1,
                   KGBAR: 1000,
@@ -265,10 +251,17 @@ const MainScreen = () => {
 
                   <div className={`${styles.price_text}`}>
                     <span className={styles.label}>High </span>
-                    <span className={styles.value}> {marketData?.Gold?.high ? marketData.Gold.high : 0}</span>
+                    <span className={styles.value}>
+                      {marketData?.Gold?.high ? marketData.Gold.high : 0}
+
+
+                    </span>
                     <span className={styles.separator}>/</span>
                     <span className={styles.label}>Low </span>
-                    <span className={styles.value}>{marketData?.Gold?.low ? marketData.Gold.low : 0}</span>
+                    <span className={styles.value}>
+                      {marketData?.Gold?.low ? marketData.Gold.low : 0}
+
+                    </span>
                   </div>
                   <div className={`${styles.bar_icon}`}>
                     <Image
@@ -282,14 +275,23 @@ const MainScreen = () => {
                   <div className={styles.bidAsk_wrap}>
                     <div className={styles.bid}>
                       <span className={styles.label}>BID</span>
-                      <span className={styles.bidValue}>{marketData?.Gold?.bid ? marketData.Gold.bid : 0}</span>
+                      <span className={styles.bidValue}>
+                        {/* {marketData?.Gold?.bid ? marketData.Gold.bid : 0} */}
+                        {GoldbiddingPrice}
+
+
+                      </span>
                     </div>
                   </div>
 
                   <div className={styles.bidAsk_wrap}>
                     <div className={styles.ask}>
                       <span className={styles.label}>ASK</span>
-                      <span className={styles.askValue}>{marketData?.Gold?.offer ? marketData.Gold.offer : 0}</span>
+                      <span className={styles.askValue}>
+                        {/* {marketData?.Gold?.offer ? marketData.Gold.offer : 0} */}
+                        {GoldaskingPrice}
+
+                      </span>
                     </div>
                   </div>
                 </li>
@@ -323,14 +325,20 @@ const MainScreen = () => {
                   <div className={styles.bidAsk_wrap}>
                     <div className={styles.bid}>
                       <span className={styles.label}>BID</span>
-                      <span className={styles.bidValue}>{marketData?.Silver?.bid ? marketData.Silver.bid : 0}</span>
+                      <span className={styles.bidValue}>
+                        {/* {marketData?.Silver?.bid ? marketData.Silver.bid : 0} */}
+                        {SilverbiddingPrice}
+                      </span>
                     </div>
                   </div>
 
                   <div className={styles.bidAsk_wrap}>
                     <div className={styles.ask}>
                       <span className={styles.label}>ASK</span>
-                      <span className={styles.askValue}>{marketData?.Silver?.offer ? marketData.Silver.offer : 0}</span>
+                      <span className={styles.askValue}>
+                        {/* {marketData?.Silver?.offer ? marketData.Silver.offer : 0} */}
+                        {SilverAskingPrice}
+                      </span>
                     </div>
                   </div>
                 </li>
@@ -342,12 +350,13 @@ const MainScreen = () => {
               <iframe
                 width="560"
                 height="315"
-                src="https://www.youtube.com/embed/jJYKmLZOOBo"
+                src="https://www.youtube.com/embed/jJYKmLZOOBo?autoplay=1&mute=1&playsinline=1"
                 title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
+                frameBorder="0"
+                allow="autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
               ></iframe>
+
             </div>
             <div className={`${styles.chart_section}`}>
               <TradingViewMarketTable />
