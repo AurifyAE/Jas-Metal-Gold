@@ -1,0 +1,56 @@
+.wrapper {
+  width: 100%;
+  height: 260px;
+  background: radial-gradient(circle at top, #141015, #070507);
+  border-radius: 14px;
+  overflow: hidden;
+  padding: 8px;
+
+}
+
+.table {
+  width: 100%;
+  height: 100%;
+}
+
+/* Remove TradingView branding clutter */
+:global(.tv-widget-footer),
+:global(.tv-market-quotes__footer),
+:global(.tv-market-quotes__header) {
+  display: none !important;
+}
+
+/* Fine tune row appearance */
+:global(.tv-market-quotes__row) {
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15) !important;
+}
+
+/* Green / Red emphasis */
+:global(.tv-market-quotes__change--positive) {
+  color: #2ecc71 !important;
+}
+
+:global(.tv-market-quotes__change--negative) {
+  color: #e74c3c !important;
+}
+
+:global(html.zoom-110),
+:global(html.zoom-125),
+:global(html.zoom-150) {
+
+  .wrapper {
+
+    height: 200px;
+  }
+
+}
+
+:global(html.zoom-175),
+:global(html.zoom-200) {
+
+  .wrapper {
+
+    height: 150px;
+  }
+
+}
