@@ -448,3 +448,70 @@
 
 
 }
+
+@media (max-width:1500px) {
+    .table_sec {
+
+
+        li {
+
+            .title_sec h3,
+
+            .detail_sec span {
+                padding: 15px 18px;
+                font-size: 1.2rem;
+
+            }
+        }
+    }
+
+    .label_icon {
+        height: 50px;
+    }
+
+    .chart_section {
+        margin-top: 30px;
+        height: 250px;
+    }
+
+    .date_sec {
+        .dateBox {
+            font-size: 1.2rem;
+        }
+
+        .day {
+            font-size: 1rem;
+        }
+    }
+
+    .label {
+        font-size: 1.2rem;
+    }
+
+    .askValue,
+    .bidValue {
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
+
+    .video_screen {
+        max-height: 350px;
+        min-height: 280px;
+    }
+
+
+
+    .bar_icon {
+        max-width: 70px;
+    }
+
+
+    .marquee_Sec {
+        height: 45px;
+
+        font-size: 1rem;
+
+
+
+    }
+}
