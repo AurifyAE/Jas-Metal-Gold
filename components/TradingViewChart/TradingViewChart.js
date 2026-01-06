@@ -25,7 +25,7 @@ export default function TradingViewMarketTable() {
             { name: "FX:EURUSD", displayName: "EUR / USD" },
             { name: "FX:GBPUSD", displayName: "GBP / USD" },
             { name: "OANDA:USDSGD", displayName: "USD / SGD" },
-            { name: "FX:USDSGD", displayName: "USD / SGD" }
+            { name: "OANDA:MYRUSD", displayName: "MYR / USD" },
           ],
 
 
