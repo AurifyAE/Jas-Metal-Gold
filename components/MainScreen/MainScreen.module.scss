@@ -318,7 +318,6 @@
     }
 }
 
-
 :global(html.zoom-110),
 :global(html.zoom-125),
 :global(html.zoom-150) {
@@ -328,13 +327,14 @@
         padding: 20px;
     }
 
+
+
     .table_sec {
         li {
 
             .detail_sec span,
             .title_sec h3 {
                 padding: 10px 18px;
-
             }
         }
     }
@@ -352,9 +352,19 @@
         font-size: 1.2rem;
     }
 
+    .price_text {
+
+        .value {
+            min-width: 60px;
+        }
+
+    }
+
     .askValue,
     .bidValue {
         font-size: 1.6rem;
+        min-width: 100px;
+
     }
 
     .bar_icon {
@@ -405,7 +415,6 @@
     .price_text {
         font-size: 1rem;
     }
-
 }
 
 :global(html.zoom-175) {
@@ -416,7 +425,6 @@
 
     .mainscreen_container {
         min-height: calc(100dvh - 100px);
-
     }
 
     .table_sec {
@@ -425,7 +433,6 @@
             .detail_sec span,
             .title_sec h3 {
                 padding: 5px 18px;
-
             }
         }
     }
@@ -447,22 +454,16 @@
         margin-top: 20px;
         height: 150px;
     }
-
-
 }
 
-@media (max-width:1500px) {
+@media (max-width: 1500px) {
     .table_sec {
-
-
         li {
 
             .title_sec h3,
-
             .detail_sec span {
                 padding: 15px 18px;
                 font-size: 1.2rem;
-
             }
         }
     }
@@ -492,6 +493,7 @@
 
     .askValue,
     .bidValue {
+        min-width: 90px;
         font-size: 1.5rem;
         font-weight: 500;
     }
@@ -501,19 +503,19 @@
         min-height: 280px;
     }
 
-
-
     .bar_icon {
         max-width: 70px;
     }
-
 
     .marquee_Sec {
         height: 45px;
 
         font-size: 1rem;
+    }
 
-
-
+    .price_text {
+        .value {
+            min-width: 90px;
+        }
     }
 }
