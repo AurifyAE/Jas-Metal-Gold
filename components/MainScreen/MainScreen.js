@@ -242,8 +242,8 @@ const MainScreen = () => {
                   >
                     <div className={styles.detail_sec}>
                       <span>{item.purity} {metalName}</span>
-                      <span>{bidPrice.toFixed(2)}</span>
-                      <span>{askPrice.toFixed(2)}</span>
+                      <span>{bidPrice ? bidPrice.toFixed(2) : 0}</span>
+                      <span>{askPrice ? askPrice.toFixed(2) : 0}</span>
                     </div>
                   </li>
                 );
@@ -265,10 +265,10 @@ const MainScreen = () => {
 
                   <div className={`${styles.price_text}`}>
                     <span className={styles.label}>High </span>
-                    <span className={styles.value}> {marketData?.Gold?.high}</span>
+                    <span className={styles.value}> {marketData?.Gold?.high ? marketData.Gold.high : 0}</span>
                     <span className={styles.separator}>/</span>
                     <span className={styles.label}>Low </span>
-                    <span className={styles.value}>{marketData?.Gold?.low}</span>
+                    <span className={styles.value}>{marketData?.Gold?.low ? marketData.Gold.low : 0}</span>
                   </div>
                   <div className={`${styles.bar_icon}`}>
                     <Image
@@ -282,14 +282,14 @@ const MainScreen = () => {
                   <div className={styles.bidAsk_wrap}>
                     <div className={styles.bid}>
                       <span className={styles.label}>BID</span>
-                      <span className={styles.bidValue}>{marketData?.Gold?.bid}</span>
+                      <span className={styles.bidValue}>{marketData?.Gold?.bid ? marketData.Gold.bid : 0}</span>
                     </div>
                   </div>
 
                   <div className={styles.bidAsk_wrap}>
                     <div className={styles.ask}>
                       <span className={styles.label}>ASK</span>
-                      <span className={styles.askValue}>{marketData?.Gold?.offer}</span>
+                      <span className={styles.askValue}>{marketData?.Gold?.offer ? marketData.Gold.offer : 0}</span>
                     </div>
                   </div>
                 </li>
@@ -306,10 +306,10 @@ const MainScreen = () => {
                   <div className={`${styles.price_text}`}>
 
                     <span className={styles.label}>High </span>
-                    <span className={styles.value}>{marketData?.Silver?.high}</span>
+                    <span className={styles.value}>{marketData?.Silver?.high ? marketData.Silver.high : 0}</span>
                     <span className={styles.separator}>/</span>
                     <span className={styles.label}>Low </span>
-                    <span className={styles.value}>{marketData?.Silver?.low}</span>
+                    <span className={styles.value}>{marketData?.Silver?.low ? marketData.Silver.low : 0}</span>
                   </div>
                   <div className={`${styles.bar_icon}`}>
                     <Image
@@ -323,14 +323,14 @@ const MainScreen = () => {
                   <div className={styles.bidAsk_wrap}>
                     <div className={styles.bid}>
                       <span className={styles.label}>BID</span>
-                      <span className={styles.bidValue}>{marketData?.Silver?.bid}</span>
+                      <span className={styles.bidValue}>{marketData?.Silver?.bid ? marketData.Silver.bid : 0}</span>
                     </div>
                   </div>
 
                   <div className={styles.bidAsk_wrap}>
                     <div className={styles.ask}>
                       <span className={styles.label}>ASK</span>
-                      <span className={styles.askValue}>{marketData?.Silver?.offer}</span>
+                      <span className={styles.askValue}>{marketData?.Silver?.offer ? marketData.Silver.offer : 0}</span>
                     </div>
                   </div>
                 </li>
