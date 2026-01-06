@@ -18,14 +18,17 @@ export default function TradingViewMarketTable() {
       width: "100%",
       height: "100%",
       symbolsGroups: [
+
         {
-          name: "Markets",
           symbols: [
-            { name: "OANDA:DJIUSD", displayName: "Dow Jones / USD" },
-            { name: "NASDAQ:NDX", displayName: "Nasdaq / USD" },
-            { name: "SP:SPX", displayName: "S&P 500 / USD" },
-            { name: "BITSTAMP:BTCUSD", displayName: "Bitcoin / USD" },
+            { name: "FX:USDINR", displayName: "USD / INR" },
+            { name: "FX:EURUSD", displayName: "EUR / USD" },
+            { name: "FX:GBPUSD", displayName: "GBP / USD" },
+            { name: "OANDA:USDSGD", displayName: "USD / SGD" },
+            { name: "FX:USDSGD", displayName: "USD / SGD" }
           ],
+
+
         },
       ],
       showSymbolLogo: true,
