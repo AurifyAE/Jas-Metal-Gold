@@ -5,7 +5,7 @@ import styles from "./MainScreen.module.scss";
 import Image from "next/image";
 import TradingViewMarketTable from "../TradingViewChart/TradingViewChart";
 import io from "socket.io-client";
-import { fetchSpotRates, fetchServerURL, fetchNews, fetchTVScreenData } from "@/api/api";
+import { fetchSpotRates, fetchServerURL, fetchNews } from "@/api/api";
 import { useSpotRate } from "@/context/SpotRateContext";
 
 const MainScreen = () => {
@@ -28,7 +28,6 @@ const MainScreen = () => {
     return { date, day };
   };
   const { date, day } = getFormattedDate();
-  const marqueeText = 'CRUDE OIL : $65.70 (9.9%)';
 
   const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -43,6 +42,7 @@ const MainScreen = () => {
   const [silverAskSpread, setSilverAskSpread] = useState(0);
 
 
+  const marqueeText = news ? news : 'CRUDE OIL : $65.70 (9.9%)';
 
   const adminId = process.env.NEXT_PUBLIC_ADMIN_ID;
   useEffect(() => {
@@ -100,7 +100,9 @@ const MainScreen = () => {
 
         setCommodities(spotRatesRes.data.info.commodities);
         setServerURL(serverURLRes.data.info.serverURL);
-        // setNews(newsRes.data.news.news);
+        setNews(newsRes?.data?.news?.news);
+
+
       } catch (error) {
         console.error("Failed to load initial data", error);
       }

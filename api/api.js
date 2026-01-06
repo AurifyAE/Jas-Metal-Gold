@@ -18,10 +18,12 @@ export const fetchServerURL = async () => {
     }
 };
 
+
 // Fetch news for the given adminId
 export const fetchNews = (adminId) => {
     return axiosInstance.get(`/get-news/${adminId}`);
 };
+
 
 // Fetch TV screen data
 export const fetchTVScreenData = (adminId) => {
