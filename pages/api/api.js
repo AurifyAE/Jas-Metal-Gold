@@ -1,4 +1,4 @@
-import axiosInstance from '../axios/axios';
+import axiosInstance from '../../axios/axios';
 
 // Replace with the correct adminId where needed
 

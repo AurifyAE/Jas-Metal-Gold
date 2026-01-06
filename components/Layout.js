@@ -21,7 +21,6 @@ const Layout = (props) => {
             // Add current zoom class
             html.classList.add(`zoom-${zoom}`);
 
-            console.log('Zoom:', zoom);
         };
 
         applyZoomClass();

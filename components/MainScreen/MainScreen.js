@@ -5,7 +5,7 @@ import styles from "./MainScreen.module.scss";
 import Image from "next/image";
 import TradingViewMarketTable from "../TradingViewChart/TradingViewChart";
 import io from "socket.io-client";
-import { fetchSpotRates, fetchServerURL, fetchNews } from "@/api/api";
+import { fetchSpotRates, fetchServerURL, fetchNews } from "@/pages/api/api";
 import { useSpotRate } from "@/context/SpotRateContext";
 
 const MainScreen = () => {
@@ -102,7 +102,7 @@ const MainScreen = () => {
 
         setCommodities(spotRatesRes.data.info.commodities);
         setServerURL(serverURLRes.data.info.serverURL);
-        setNews(newsRes?.data?.news?.news);
+        // setNews(newsRes?.data?.news?.news);
 
 
       } catch (error) {
@@ -178,9 +178,25 @@ const MainScreen = () => {
 
   const GoldbiddingPrice = marketData?.Gold?.bid + goldBidSpread
   const GoldaskingPrice = GoldbiddingPrice + 0.5 + goldAskSpread
-
   const SilverbiddingPrice = Number(marketData?.Silver?.bid + silverBidSpread);
   const SilverAskingPrice = Number((SilverbiddingPrice + 0.05 + silverAskSpread).toFixed(3));
+
+  useEffect(() => {
+    fetch("/api/market-news")
+      .then(res => res.json())
+      .then(data => {
+        console.log('News received:', data.headlines);
+        setNews(data.headlines);
+      })
+      .catch(err => {
+        console.error('Failed to fetch market news:', err);
+        setNews(["Failed to load news"]);
+      });
+  }, []);
+  console.log('asdsadsad', news);
+
+  const duration = Math.max(news.length * 6, 30); // seconds
+
 
   return (
     <div className={styles.mainscreen_Section}>
@@ -387,11 +403,23 @@ const MainScreen = () => {
         </div>
 
         <div className={styles.marquee_wrap}>
-          {[...Array(8)].map((_, index) => (
-            <span key={index} className={styles.marquee_item}>
-              {marqueeText}
-            </span>
-          ))}
+          <div
+            key={news.length}   // 👈 forces clean restart only when data changes
+            className={styles.marquee_track}
+            style={{ "--duration": `${Math.max(news.length * 6, 20)}s` }}
+
+          >
+            {news.map((item, i) => (
+              <span key={`a-${i}`} className={styles.marquee_item}>
+                {item}
+              </span>
+            ))}
+            {news.map((item, i) => (
+              <span key={`b-${i}`} className={styles.marquee_item}>
+                {item}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
       <div className={styles.background_lines}>
