@@ -23,6 +23,9 @@ const GoldRates = () => {
 
     const [prevGoldBid, setPrevGoldBid] = useState(null);
     const [goldBidDirection, setGoldBidDirection] = useState('');
+    const [prevSilverBid, setPrevSilverBid] = useState(null);
+    const [silverBidDirection, setSilverBidDirection] = useState('');
+
 
     const adminId = process.env.NEXT_PUBLIC_ADMIN_ID;
     const { updateMarketData } = useSpotRate();
@@ -114,6 +117,8 @@ const GoldRates = () => {
     useEffect(() => {
         if (GoldbiddingPrice == null) return;
 
+        let timeout;
+
         if (prevGoldBid !== null) {
             if (GoldbiddingPrice > prevGoldBid) {
                 setGoldBidDirection("up");
@@ -121,12 +126,45 @@ const GoldRates = () => {
                 setGoldBidDirection("down");
             } else {
                 setGoldBidDirection("normal");
-
             }
+
+            // ⏱ Reset to normal after 00.5 second
+            timeout = setTimeout(() => {
+                setGoldBidDirection("normal");
+            }, 500);
         }
 
         setPrevGoldBid(GoldbiddingPrice);
+
+        return () => clearTimeout(timeout);
     }, [GoldbiddingPrice]);
+
+    useEffect(() => {
+        if (SilverbiddingPrice == null) return;
+
+        let timeout;
+
+        if (prevSilverBid !== null) {
+            if (SilverbiddingPrice > prevSilverBid) {
+                setSilverBidDirection("up");
+            } else if (SilverbiddingPrice < prevSilverBid) {
+                setSilverBidDirection("down");
+            } else {
+                setSilverBidDirection("normal");
+            }
+
+            // ⏱ Reset to normal after 0.5 second
+            timeout = setTimeout(() => {
+                setSilverBidDirection("normal");
+            }, 500);
+        }
+
+        setPrevSilverBid(SilverbiddingPrice);
+
+        return () => clearTimeout(timeout);
+    }, [SilverbiddingPrice]);
+
+
 
 
     // ============================================================================
@@ -190,17 +228,29 @@ const GoldRates = () => {
                         <Image src="/icons/silver-biscut.png" height={300} width={300} alt="Silver Bar" />
                     </div>
                     <div className={styles.bidAsk_wrap}>
-                        <div className={styles.bid}>
+                        <div className={`${styles.bid} ${silverBidDirection === "up"
+                            ? styles.priceUp
+                            : silverBidDirection === "down"
+                                ? styles.priceDown
+                                : ""
+                            }`}>
                             <span className={styles.label}>BID</span>
                             <span className={styles.bidValue}>{SilverbiddingPrice}</span>
                         </div>
                     </div>
+
                     <div className={styles.bidAsk_wrap}>
-                        <div className={styles.ask}>
+                        <div className={`${styles.ask} ${silverBidDirection === "up"
+                            ? styles.priceUp
+                            : silverBidDirection === "down"
+                                ? styles.priceDown
+                                : ""
+                            }`}>
                             <span className={styles.label}>ASK</span>
                             <span className={styles.askValue}>{SilverAskingPrice}</span>
                         </div>
                     </div>
+
                 </li>
             </ul>
         </div>

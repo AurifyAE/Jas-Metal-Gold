@@ -13,9 +13,9 @@
         background: #1a1a1a;
         border-radius: 12px;
         backdrop-filter: blur(7.5px);
-        
-        &:first-child{
-            
+
+        &:first-child {
+
             background: #1c1b15;
         }
     }
@@ -97,8 +97,8 @@
 
         .askValue,
         .bidValue {
-            border-color: green;
-            color: green;
+            border-color: #008000;
+            color: #008000;
         }
 
     }
@@ -107,8 +107,8 @@
 
         .askValue,
         .bidValue {
-            border-color: red;
-            color: rgb(128, 0, 0);
+            border-color: #FF0000;
+            color: #FF0000;
         }
 
     }
