@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from "react";
+import styles from "./YoutubeVideo.module.scss";
 
 const YoutubeVideo = () => {
     const playerRef = useRef(null);
@@ -41,9 +42,9 @@ const YoutubeVideo = () => {
         };
     }, []);
 
-    // SINGLE OK / ENTER HANDLER (TV SAFE)
+    // OK / ENTER key handler (TV remote safe)
     useEffect(() => {
-        function handleKeyDown(e) {
+        const handleKeyDown = (e) => {
             if (e.key !== "Enter" && e.keyCode !== 13) return;
             if (!ytPlayerRef.current) return;
 
@@ -57,31 +58,18 @@ const YoutubeVideo = () => {
                 setShowHint(true);
                 setIsMuted(true);
             }
-        }
+        };
 
         document.addEventListener("keydown", handleKeyDown);
         return () => document.removeEventListener("keydown", handleKeyDown);
     }, [isMuted]);
 
     return (
-        <div style={{ position: "relative", width: "100%", height: "100%" }}>
-            <div ref={playerRef} style={{ width: "100%", height: "100%" }} />
+        <div className={styles.videoWrapper}>
+            <div ref={playerRef} className={styles.player} />
 
             {showHint && (
-                <div
-                    style={{
-                        position: "absolute",
-                        bottom: "50px",
-                        left: "50%",
-                        transform: "translateX(-50%)",
-                        background: "rgba(0,0,0,0.7)",
-                        color: "#fff",
-                        padding: "10px 18px",
-                        borderRadius: "6px",
-                        fontSize: "14px",
-                        zIndex: 10,
-                    }}
-                >
+                <div className={styles.hint}>
                     PRESS OK TO ENABLE SOUND
                 </div>
             )}

@@ -5,7 +5,6 @@
   border-radius: 14px;
   overflow: hidden;
   padding: 8px;
-
 }
 
 .table {
@@ -37,29 +36,20 @@
 :global(html.zoom-110),
 :global(html.zoom-125),
 :global(html.zoom-150) {
-
   .wrapper {
-
     height: 200px;
   }
-
 }
 
 :global(html.zoom-175),
 :global(html.zoom-200) {
-
   .wrapper {
-
     height: 150px;
   }
-
 }
 
-@media (max-width:1550px) {
-
+@media (max-width: 1550px) {
   .wrapper {
-
     height: 250px;
   }
-
 }

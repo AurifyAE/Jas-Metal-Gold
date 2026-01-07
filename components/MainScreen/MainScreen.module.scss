@@ -160,7 +160,8 @@
 
 .askValue,
 .bidValue {
-    font-size: 2.188rem;
+    // font-size: 2.188rem;
+    font-size: 2.5rem;
     font-weight: 500;
     min-width: 130px;
 }
@@ -269,7 +270,6 @@
         height: inherit;
 
         .marquee_track {
-
             display: flex;
             align-items: center;
             justify-content: center;
