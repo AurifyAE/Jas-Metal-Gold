@@ -390,3 +390,25 @@
         }
     }
 }
+
+
+.no_data_Section {
+    display: none;
+    color: white;
+    height: 100dvh;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+@media (max-width: 1450px) {
+    .mainscreen_Section {
+        display: none;
+    }
+
+    .no_data_Section {
+        display: flex;
+    }
+
+
+}

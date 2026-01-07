@@ -195,65 +195,71 @@ const MainScreen = () => {
   // RENDER
   // ============================================================================
   return (
-    <div className={styles.mainscreen_Section}>
-      <div className="container">
-        <div className={styles.mainscreen_container}>
-          <div className={styles.left_screen}>
-            <GoldRates />
+    <>
+      <div className={styles.mainscreen_Section}>
+        <div className="container">
+          <div className={styles.mainscreen_container}>
+            <div className={styles.left_screen}>
+              <GoldRates />
 
-            <CommodityTable
-              commodities={commodities}
-              getMetalName={getMetalName}
-              calculatePrices={calculatePrices}
-              currencyFormatter={currencyFormatter}
-            />
-          </div>
+              <CommodityTable
+                commodities={commodities}
+                getMetalName={getMetalName}
+                calculatePrices={calculatePrices}
+                currencyFormatter={currencyFormatter}
+              />
+            </div>
 
-          <div className={styles.right_screen}>
-            <div className={styles.logo_date_sec}>
-              <div className={styles.main_logo}>
-                <Image src="/images/logo.svg" height={300} width={300} alt="Logo" />
-              </div>
-              <div className={styles.date_sec}>
-                <div className={styles.dateBox}>
-                  <div className={styles.date}>{date}</div>
-                  <div className={styles.day}>{day}</div>
+            <div className={styles.right_screen}>
+              <div className={styles.logo_date_sec}>
+                <div className={styles.main_logo}>
+                  <Image src="/images/logo.svg" height={300} width={300} alt="Logo" />
+                </div>
+                <div className={styles.date_sec}>
+                  <div className={styles.dateBox}>
+                    <div className={styles.date}>{date}</div>
+                    <div className={styles.day}>{day}</div>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className={styles.chart_section}>
-              <TradingViewMarketTable />
-            </div>
+              <div className={styles.chart_section}>
+                <TradingViewMarketTable />
+              </div>
 
-            <YoutubeVideo/>
+              <YoutubeVideo />
+            </div>
           </div>
         </div>
-      </div>
-      {/* MARQUEE NEWS SECTION */}
-      <div className={styles.marquee_Sec}>
-        <div className={styles.marquee_label}>JAS METAL GOLD TRADING</div>
-        <div className={styles.marquee_wrap}>
-          <div
-            key={news.length}
-            className={styles.marquee_track}
-            style={{ "--duration": `${Math.max(news.length * 6, 20)}s` }}
-          >
-            {news.map((item, i) => (
-              <span key={`a-${i}`} className={styles.marquee_item}>{item}</span>
-            ))}
-            {news.map((item, i) => (
-              <span key={`b-${i}`} className={styles.marquee_item}>{item}</span>
-            ))}
+        {/* MARQUEE NEWS SECTION */}
+        <div className={styles.marquee_Sec}>
+          <div className={styles.marquee_label}>JAS METAL GOLD TRADING</div>
+          <div className={styles.marquee_wrap}>
+            <div
+              key={news.length}
+              className={styles.marquee_track}
+              style={{ "--duration": `${Math.max(news.length * 6, 20)}s` }}
+            >
+              {news.map((item, i) => (
+                <span key={`a-${i}`} className={styles.marquee_item}>{item}</span>
+              ))}
+              {news.map((item, i) => (
+                <span key={`b-${i}`} className={styles.marquee_item}>{item}</span>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* BACKGROUND DECORATION */}
-      <div className={styles.background_lines}>
-        <Image src="/images/pattern.svg" height={1000} width={1000} alt="Background Lines" />
+        {/* BACKGROUND DECORATION */}
+        <div className={styles.background_lines}>
+          <Image src="/images/pattern.svg" height={1000} width={1000} alt="Background Lines" />
+        </div>
       </div>
-    </div>
+      <div className={styles.no_data_Section}>
+
+        This content is only available on Desktop or TV devices.      </div>
+    </>
+
   );
 };
 
