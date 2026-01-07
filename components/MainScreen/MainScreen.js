@@ -7,6 +7,7 @@ import TradingViewMarketTable from "../TradingViewChart/TradingViewChart";
 import io from "socket.io-client";
 import { fetchSpotRates, fetchServerURL, fetchNews } from "@/pages/api/api";
 import { useSpotRate } from "@/context/SpotRateContext";
+import YoutubeVideo from "../YoutubeVideo";
 
 const MainScreen = () => {
 
@@ -370,7 +371,7 @@ const MainScreen = () => {
           </div>
           <div className={`${styles.right_screen}`}>
             <div className={`${styles.video_screen}`}>
-              <iframe
+              {/* <iframe
                 width="560"
                 height="315"
                 src="https://www.youtube.com/embed/jJYKmLZOOBo?autoplay=1&mute=1&playsinline=1"
@@ -378,7 +379,9 @@ const MainScreen = () => {
                 frameBorder="0"
                 allow="autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
-              ></iframe>
+              ></iframe> */}
+
+              <YoutubeVideo />
 
             </div>
             <div className={`${styles.chart_section}`}>
