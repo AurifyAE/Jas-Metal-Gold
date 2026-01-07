@@ -130,3 +130,10 @@ html.zoom-200 {
     font-size: 50%;
   }
 }
+
+@media (min-width: 2000px) {
+ 
+  html {
+    font-size: 110%;
+  }
+}

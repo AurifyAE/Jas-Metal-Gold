@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    padding: 0 20px;
 
     li {
         display: grid;
@@ -15,7 +16,6 @@
         backdrop-filter: blur(7.5px);
 
         &:first-child {
-
             background: #1c1b15;
         }
     }
@@ -24,16 +24,17 @@
 .label_icon {
     position: relative;
     top: -10px;
-    left: -40px;
+    left: -46px;
     flex-shrink: 0;
-    height: 85px;
+    height: auto;
+    width: 320px;
 
     img {
         height: 100%;
+        width: 100%;
         object-fit: contain;
     }
 }
-
 
 .price_text {
     font-size: 1.5rem;
@@ -72,8 +73,6 @@
     font-weight: 500;
 }
 
-
-
 .askValue,
 .bidValue {
     // font-size: 2.188rem;
@@ -97,20 +96,18 @@
 
         .askValue,
         .bidValue {
-            border-color: #008000;
-            color: #008000;
+            border-color: #03c403;
+            color: #03c403;
         }
-
     }
 
     &.priceDown {
 
         .askValue,
         .bidValue {
-            border-color: #FF0000;
-            color: #FF0000;
+            border-color: #ff0000;
+            color: #ff0000;
         }
-
     }
 }
 
@@ -127,4 +124,126 @@
     align-items: center;
     justify-content: center;
     margin: auto;
+}
+
+// -------------- these are new code pasted from other file-----------
+:global(html.zoom-110),
+:global(html.zoom-125),
+:global(html.zoom-150) {
+    .price_text {
+        font-size: 1.2rem;
+    }
+
+    .label_icon {
+        left: -45px;
+    }
+
+    .label {
+        font-size: 1.2rem;
+    }
+
+    .price_text {
+        .value {
+            min-width: 60px;
+        }
+    }
+
+    .askValue,
+    .bidValue {
+        font-size: 1.6rem;
+        min-width: 100px;
+    }
+
+    .bar_icon {
+        max-width: 80px;
+    }
+}
+
+:global(html.zoom-125) {
+    .label_icon {
+        left: -46px;
+    }
+}
+
+:global(html.zoom-150) {
+    .label_icon {
+        width: 200px;
+        left: -36px;
+    }
+
+    .price_text {
+        font-size: 1rem;
+    }
+}
+
+:global(html.zoom-175) {
+    .label_icon {
+        height: 50px;
+        left: -30px;
+    }
+
+    .bar_icon {
+        max-width: 50px;
+    }
+
+    .price_text {
+        font-size: 0.8rem;
+    }
+}
+
+@media (min-width: 2000px) {
+
+    .askValue,
+    .bidValue {
+        font-size: 4rem;
+    }
+
+    .price_text {
+        font-size: 2rem;
+
+    }
+
+    .bid,
+    .ask {
+        gap: 25px;
+
+
+    }
+
+    .bar_icon {
+        max-width: 200px;
+    }
+
+
+    .label {
+        font-size: 2rem;
+    }
+
+    .price_left {
+        gap: 40px;
+    }
+}
+
+@media (max-width: 1550px) {
+
+    .label {
+        font-size: 1.2rem;
+    }
+
+    .askValue,
+    .bidValue {
+        min-width: 90px;
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
+
+    .bar_icon {
+        max-width: 70px;
+    }
+
+    .price_text {
+        .value {
+            min-width: 90px;
+        }
+    }
 }

@@ -12,7 +12,6 @@
     :global(.container) {
         flex: 1;
         margin-top: 20px;
-
     }
 }
 
@@ -25,20 +24,22 @@
     padding: 30px;
     gap: 20px;
 
+    .left_screen {
+        width: calc(53% - 10px);
+    }
+
+    .right_screen {
+        width: calc(45% - 10px);
+    }
 
     .left_screen,
     .right_screen {
-        width: calc(48% - 10px);
-
         display: flex;
         flex-direction: column;
         justify-content: center;
         gap: 30px;
     }
 }
-
-
-
 
 .video_screen {
     max-height: 400px;
@@ -76,7 +77,7 @@
         text-align: center;
         line-height: 1.4;
         /* Gradient text */
-        background: linear-gradient(#D68E15, #B46A11);
+        background: linear-gradient(#d68e15, #b46a11);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
 
@@ -190,12 +191,8 @@
 :global(html.zoom-125),
 :global(html.zoom-150) {
     .mainscreen_container {
-        min-height: calc(100dvh - 60px);
-
-        padding: 20px;
+        min-height: calc(100dvh - 100px);
     }
-
-
 
     .table_sec {
         li {
@@ -221,21 +218,16 @@
     }
 
     .price_text {
-
         .value {
             min-width: 60px;
         }
-
     }
 
     .askValue,
     .bidValue {
         font-size: 1.6rem;
         min-width: 100px;
-
     }
-
-
 
     .bar_icon {
         max-width: 80px;
@@ -285,16 +277,20 @@
     .price_text {
         font-size: 1rem;
     }
+
+    .mainscreen_container {
+
+        .left_screen,
+        .right_screen {
+            gap: 15px;
+        }
+    }
 }
 
 :global(html.zoom-175) {
     .label_icon {
         height: 50px;
         left: -30px;
-    }
-
-    .mainscreen_container {
-        min-height: calc(100dvh - 100px);
     }
 
     .table_sec {
@@ -326,25 +322,21 @@
     }
 }
 
-@media (min-width: 1900px) {
+@media (min-width: 2000px) {
 
     .askValue,
     .bidValue {
         font-size: 2.9rem;
     }
+
+    .marquee_Sec {
+        height: 60px;
+        font-size: 2rem;
+
+    }
 }
 
 @media (max-width: 1550px) {
-    .table_sec {
-        li {
-
-            .title_sec h3,
-            .detail_sec span {
-                padding: 15px 18px;
-                font-size: 1.2rem;
-            }
-        }
-    }
 
     .label_icon {
         left: -32px;
