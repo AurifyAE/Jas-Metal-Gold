@@ -1,261 +1,249 @@
 .price_left {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 20px;
 
-    li {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px 20px;
-        padding: 0 20px 20px 20px;
-        z-index: 1;
-        position: relative;
-        background: #1a1a1a;
-        border-radius: 12px;
-        backdrop-filter: blur(7.5px);
+  li {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px 20px;
+    padding: 0 20px 20px 20px;
+    z-index: 1;
+    position: relative;
+    background: #1a1a1a;
+    border-radius: 12px;
+    backdrop-filter: blur(7.5px);
 
-        &:first-child {
-            background: #1c1b15;
-        }
+    &:first-child {
+      background: #1c1b15;
     }
+  }
 }
 
 .label_icon {
-    position: relative;
-    top: -10px;
-    left: -46px;
-    flex-shrink: 0;
-    height: auto;
-    width: 320px;
+  position: relative;
+  top: -10px;
+  left: -46px;
+  flex-shrink: 0;
+  height: auto;
+  width: 320px;
 
-    img {
-        height: 100%;
-        width: 100%;
-        object-fit: contain;
-    }
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
 }
 
 .price_text {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  .label {
+    color: rgba(255, 255, 255, 0.55);
     font-weight: 400;
-    color: white;
-    display: flex;
-    align-items: center;
-    gap: 7px;
+  }
 
-    .label {
-        color: rgba(255, 255, 255, 0.55);
-        font-weight: 400;
-    }
+  .value {
+    color: #ffffff;
+    font-weight: 600;
+    min-width: 100px;
+  }
 
-    .value {
-        color: #ffffff;
-        font-weight: 600;
-        min-width: 100px;
-    }
-
-    .separator {
-        color: rgba(255, 255, 255, 0.35);
-    }
+  .separator {
+    color: rgba(255, 255, 255, 0.35);
+  }
 }
 
 .bidAsk_wrap {
-    display: flex;
-    gap: 40px;
-    align-items: center;
-    font-family: var(--font-primary);
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  font-family: var(--font-primary);
 }
 
 .label {
-    color: #ffffff;
-    font-size: 1.75rem;
-    font-weight: 500;
+  color: #ffffff;
+  font-size: 1.75rem;
+  font-weight: 500;
 }
 
 .askValue,
 .bidValue {
-    // font-size: 2.188rem;
-    font-size: 2.5rem;
-    font-weight: 700;
-    min-width: 200px;
-    padding: 10px;
-    border: 1px solid white;
-    text-align: center;
-    border-radius: 15px;
-    color: white;
+  // font-size: 2.188rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  min-width: 200px;
+  padding: 10px;
+  border: 1px solid white;
+  text-align: center;
+  border-radius: 15px;
+  color: white;
 }
 
 .bid,
 .ask {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 
-    &.priceUp {
-
-        .askValue,
-        .bidValue {
-            border-color: #03c403;
-            color: #03c403;
-        }
+  &.priceUp {
+    .askValue,
+    .bidValue {
+      border-color: #03c403;
+      color: #03c403;
     }
+  }
 
-    &.priceDown {
-
-        .askValue,
-        .bidValue {
-            border-color: #ff0000;
-            color: #ff0000;
-        }
+  &.priceDown {
+    .askValue,
+    .bidValue {
+      border-color: #ff0000;
+      color: #ff0000;
     }
+  }
 }
 
 .bar_icon {
-    grid-row-start: 1;
-    grid-row-end: 3;
-    grid-column-start: 3;
-    grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  grid-column-start: 3;
+  grid-column-end: 4;
 
-    width: 100%;
-    max-width: 120px;
-    height: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
+  width: 100%;
+  max-width: 120px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
 }
 
 // -------------- these are new code pasted from other file-----------
 :global(html.zoom-110),
 :global(html.zoom-125),
 :global(html.zoom-150) {
-    .price_text {
-        font-size: 1.2rem;
-    }
+  .price_text {
+    font-size: 1.2rem;
+  }
 
-    .label_icon {
-        left: -45px;
-    }
+  .label_icon {
+    left: -45px;
+  }
 
-    .label {
-        font-size: 1.2rem;
-    }
+  .label {
+    font-size: 1.2rem;
+  }
 
-    .price_text {
-        .value {
-            min-width: 60px;
-        }
+  .price_text {
+    .value {
+      min-width: 60px;
     }
+  }
 
-    .askValue,
-    .bidValue {
-        font-size: 1.6rem;
-        min-width: 100px;
-    }
+  .askValue,
+  .bidValue {
+    font-size: 1.6rem;
+    min-width: 100px;
+  }
 
-    .bar_icon {
-        max-width: 80px;
-    }
+  .bar_icon {
+    max-width: 80px;
+  }
 }
 
 :global(html.zoom-125) {
-    .label_icon {
-        left: -46px;
-    }
+  .label_icon {
+    left: -46px;
+  }
 }
 
 :global(html.zoom-150) {
-    .label_icon {
-        width: 200px;
-        left: -36px;
-    }
+  .label_icon {
+    width: 200px;
+    left: -36px;
+  }
 
-    .price_text {
-        font-size: 1rem;
-    }
+  .price_text {
+    font-size: 1rem;
+  }
 }
 
 :global(html.zoom-175) {
-    .label_icon {
-        height: 50px;
-        left: -30px;
-    }
+  .label_icon {
+    height: 50px;
+    left: -30px;
+  }
 
-    .bar_icon {
-        max-width: 50px;
-    }
+  .bar_icon {
+    max-width: 50px;
+  }
 
-    .price_text {
-        font-size: 0.8rem;
-    }
+  .price_text {
+    font-size: 0.8rem;
+  }
 }
 
 @media (min-width: 2000px) {
+  .askValue,
+  .bidValue {
+    font-size: 4rem;
+  }
 
-    .askValue,
-    .bidValue {
-        font-size: 4rem;
-    }
+  .price_text {
+    font-size: 2rem;
+  }
 
-    .price_text {
-        font-size: 2rem;
+  .bid,
+  .ask {
+    gap: 25px;
+  }
 
-    }
+  .bar_icon {
+    max-width: 200px;
+  }
 
-    .bid,
-    .ask {
-        gap: 25px;
+  .label {
+    font-size: 2rem;
+  }
 
-
-    }
-
-    .bar_icon {
-        max-width: 200px;
-    }
-
-
-    .label {
-        font-size: 2rem;
-    }
-
-    .price_left {
-        gap: 40px;
-    }
+  .price_left {
+    gap: 40px;
+  }
 }
 
 @media (max-width: 1550px) {
+  .label {
+    font-size: 1.2rem;
+  }
 
-    .label {
-        font-size: 1.2rem;
-    }
+  .askValue,
+  .bidValue {
+    min-width: 90px;
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
 
-    .askValue,
-    .bidValue {
-        min-width: 90px;
-        font-size: 1.5rem;
-        font-weight: 500;
-    }
+  .bar_icon {
+    max-width: 70px;
+  }
 
-    .bar_icon {
-        max-width: 70px;
+  .price_text {
+    .value {
+      min-width: 90px;
     }
-
-    .price_text {
-        .value {
-            min-width: 90px;
-        }
-    }
+  }
 }
 
 @media (max-width: 1450px) {
+  .label_icon {
+    left: -40px;
 
-
-    .label_icon {
-
-        left: -40px;
-
-        width: 250px;
-    }
-
+    width: 250px;
+  }
 }
