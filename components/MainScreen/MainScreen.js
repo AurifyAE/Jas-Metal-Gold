@@ -194,9 +194,7 @@ const MainScreen = () => {
         setNews(["Failed to load news"]);
       });
   }, []);
-  console.log('asdsadsad', news);
 
-  const duration = Math.max(news.length * 6, 30); // seconds
 
 
   return (
