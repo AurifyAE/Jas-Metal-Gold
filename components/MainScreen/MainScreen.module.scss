@@ -1,13 +1,19 @@
 .mainscreen_Section {
     width: 100%;
-    background-color: #181818;
+    background-image: linear-gradient(220deg, #1f1f1f, black);
     display: flex;
     height: 100dvh;
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
     overflow: hidden;
-    gap: 10px;
+    gap: 30px;
+
+    :global(.container) {
+        flex: 1;
+        margin-top: 20px;
+
+    }
 }
 
 .mainscreen_container {
@@ -15,12 +21,10 @@
     display: flex;
     justify-content: space-between;
     border: 1px solid #34291a;
-    height: auto;
+    height: 100%;
     padding: 30px;
-    margin: 0 20px;
-    margin-top: 15px;
     gap: 20px;
-    min-height: 80dvh;
+
 
     .left_screen,
     .right_screen {
@@ -29,168 +33,12 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        gap: 30px;
     }
 }
 
-.table_sec {
-    height: auto;
-    color: white;
-    width: 100%;
-    // overflow: hidden;
 
-    li {
-        border-bottom: 1px solid rgba(63, 63, 63, 0.342);
 
-        .title_sec {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: hsla(41, 94%, 53%, 0.04);
-
-            h3 {
-                padding: 15px 18px;
-                flex: 1;
-                color: #be7412;
-                font-family: var(--font-primary);
-                font-size: 1.5rem;
-                font-weight: 500;
-                margin-bottom: 0;
-                text-align: center;
-
-                &:first-child {
-                    text-align: start;
-                }
-            }
-        }
-
-        .detail_sec {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            span {
-                padding: 15px 18px;
-                flex: 1;
-                font-family: var(--font-primary);
-                font-size: 1.375rem;
-                font-weight: 500;
-
-                text-align: center;
-
-                &:first-child {
-                    text-align: start;
-                }
-            }
-        }
-    }
-}
-
-.price_left {
-    margin-top: 50px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-
-    li {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px 20px;
-        padding: 0 20px 20px 20px;
-        z-index: 1;
-        position: relative;
-        background: #181712b2;
-        border-radius: 12px;
-        backdrop-filter: blur(7.5px);
-    }
-}
-
-.label_icon {
-    position: relative;
-    top: -10px;
-    left: -40px;
-    flex-shrink: 0;
-    height: 85px;
-
-    img {
-        height: 100%;
-        object-fit: contain;
-    }
-}
-
-.price_text {
-    font-size: 1.5rem;
-    font-weight: 400;
-    color: white;
-    display: flex;
-    align-items: center;
-    gap: 7px;
-
-    .label {
-        color: rgba(255, 255, 255, 0.55);
-        font-weight: 400;
-    }
-
-    .value {
-        color: #ffffff;
-        font-weight: 600;
-        min-width: 100px;
-    }
-
-    .separator {
-        color: rgba(255, 255, 255, 0.35);
-    }
-}
-
-.bidAsk_wrap {
-    display: flex;
-    gap: 40px;
-    align-items: center;
-    font-family: var(--font-primary);
-}
-
-.label {
-    color: #ffffff;
-    font-size: 1.75rem;
-    font-weight: 500;
-}
-
-.bidValue {
-    color: #16803e;
-}
-
-.askValue,
-.bidValue {
-    // font-size: 2.188rem;
-    font-size: 2.5rem;
-    font-weight: 500;
-    min-width: 130px;
-}
-
-.askValue {
-    color: #b91c1c;
-}
-
-.bid,
-.ask {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.bar_icon {
-    grid-row-start: 1;
-    grid-row-end: 3;
-    grid-column-start: 3;
-    grid-column-end: 4;
-
-    width: 100%;
-    max-width: 120px;
-    height: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-}
 
 .video_screen {
     max-height: 400px;
@@ -204,8 +52,9 @@
 }
 
 .chart_section {
-    margin-top: 50px;
-    height: 300px;
+    // margin-top: 50px;
+
+    min-height: 350px;
 }
 
 .logo_date_sec {
@@ -226,7 +75,15 @@
     .dateBox {
         text-align: center;
         line-height: 1.4;
-        color: #ffffff;
+        /* Gradient text */
+        background: linear-gradient(#D68E15, #B46A11);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+        /* Optional for better cross-browser support */
+        background-clip: text;
+        color: transparent;
+
         font-size: 1.5rem;
         font-weight: 400;
     }
@@ -322,6 +179,7 @@
     pointer-events: none;
     overflow: hidden;
     z-index: 0;
+    opacity: 0.05;
 
     img {
         height: 100%;
@@ -389,8 +247,8 @@
     }
 
     .chart_section {
-        margin-top: 30px;
-        height: 200px;
+        // margin-top: 30px;
+        min-height: 200px;
     }
 
     .main_logo {
@@ -463,8 +321,16 @@
     }
 
     .chart_section {
-        margin-top: 20px;
-        height: 150px;
+        // margin-top: 20px;
+        min-height: 150px;
+    }
+}
+
+@media (min-width: 1900px) {
+
+    .askValue,
+    .bidValue {
+        font-size: 2.9rem;
     }
 }
 
@@ -486,8 +352,8 @@
     }
 
     .chart_section {
-        margin-top: 30px;
-        height: 250px;
+        // margin-top: 30px;
+        min-height: 250px;
     }
 
     .date_sec {

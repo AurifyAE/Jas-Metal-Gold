@@ -21,15 +21,15 @@ export default function TradingViewMarketTable() {
 
         {
           symbols: [
-            { name: "FX:USDINR", displayName: "USD / INR" },
+            { name: "FX:AEDUSD", displayName: "AED / USD" },
+            { name: "FX:AEDEUR", displayName: "AED / EUR" },
+            { name: "FX:AEDINR", displayName: "AED / INR" },
+            { name: "FX:AEDSGD", displayName: "AED / SGD" },
             { name: "FX:EURUSD", displayName: "EUR / USD" },
-            { name: "FX:GBPUSD", displayName: "GBP / USD" },
-            { name: "OANDA:USDSGD", displayName: "USD / SGD" },
-            { name: "OANDA:MYRUSD", displayName: "MYR / USD" },
+            { name: "FX:AEDGBP", displayName: "AED / GBP" },
+            { name: "FX:AEDMYR", displayName: "AED / MYR" },
           ],
-
-
-        },
+        }
       ],
       showSymbolLogo: true,
       colorTheme: "dark",
