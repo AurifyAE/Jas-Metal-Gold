@@ -229,12 +229,19 @@ const MainScreen = () => {
                 const purityPower = purity / Math.pow(10, purity.toString().length);
 
                 const bidPrice =
-                  ((bid / 31.103) * 3.674) *
-                  unitMultiplier * purityPower;
+                  (bid / 31.103) * unitMultiplier * purityPower;
+
+                //3.674 Is not included coz the conversion is in dollar
 
                 const askPrice =
-                  ((ask / 31.103) * 3.674) *
-                  unitMultiplier * purityPower;
+                  (ask / 31.103) * unitMultiplier * purityPower;
+                //3.674 Is not included coz the conversion is in dollar
+
+                const currencyFormatter = new Intl.NumberFormat("en-IN", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                });
+
 
                 return (
 
@@ -244,8 +251,8 @@ const MainScreen = () => {
                   >
                     <div className={styles.detail_sec}>
                       <span>{item.purity} {metalName}</span>
-                      <span>{bidPrice ? bidPrice.toFixed(2) : 0}</span>
-                      <span>{askPrice ? askPrice.toFixed(2) : 0}</span>
+                      <span>{bidPrice ? currencyFormatter.format(bidPrice) : 0}</span>
+                      <span>{askPrice ? currencyFormatter.format(askPrice) : 0}</span>
                     </div>
                   </li>
                 );
