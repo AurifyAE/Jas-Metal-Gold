@@ -134,10 +134,18 @@ const MainScreen = () => {
     if (!serverURL) return;
 
     const socket = io(serverURL, {
-      transports: ["websocket"],
+      transports: ["polling", "websocket"], // ✅ TV-safe
       withCredentials: true,
       query: { secret: process.env.NEXT_PUBLIC_SOCKET_SECRET_KEY },
+      reconnection: true,
+      reconnectionAttempts: Infinity,
+
+      // transports: ["websocket"],
+      // withCredentials: true,
+      // query: { secret: process.env.NEXT_PUBLIC_SOCKET_SECRET_KEY },
     });
+
+
 
     socket.on("connect", () => {
       socket.emit("request-data", ["GOLD", "SILVER"]);
