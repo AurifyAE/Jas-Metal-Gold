@@ -134,15 +134,9 @@ const MainScreen = () => {
     if (!serverURL) return;
 
     const socket = io(serverURL, {
-      transports: ["polling", "websocket"], // ✅ TV-safe
+      transports: ["websocket"],
       withCredentials: true,
       query: { secret: process.env.NEXT_PUBLIC_SOCKET_SECRET_KEY },
-      reconnection: true,
-      reconnectionAttempts: Infinity,
-
-      // transports: ["websocket"],
-      // withCredentials: true,
-      // query: { secret: process.env.NEXT_PUBLIC_SOCKET_SECRET_KEY },
     });
 
 

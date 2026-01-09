@@ -74,16 +74,8 @@ const GoldRates = () => {
 
         const socket = io(serverURL, {
             query: { secret: process.env.NEXT_PUBLIC_SOCKET_SECRET_KEY },
-            // 👇 CRITICAL FIX FOR TV
-            transports: ['polling', 'websocket'],
-
+            transports: ['websocket'],
             withCredentials: true,
-            reconnection: true,
-            reconnectionAttempts: Infinity,
-
-
-            // withCredentials: true,
-            // transports: ['websocket'],
         });
 
         socket.on('connect', () => {
