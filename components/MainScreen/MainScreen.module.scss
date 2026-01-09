@@ -399,7 +399,21 @@
     font-size: 22px;
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1550px) {
+    .mainscreen_container {
+
+
+        .left_screen {
+            width: calc(60% - 10px);
+        }
+
+        .right_screen {
+            width: calc(40% - 10px);
+        }
+    }
+}
+
+@media (max-width: 1279px) {
     .mainscreen_Section {
         display: none;
     }

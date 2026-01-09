@@ -52,6 +52,7 @@
     .value {
         color: #ffffff;
         font-weight: 600;
+        text-align: center;
         min-width: 100px;
     }
 
@@ -220,7 +221,7 @@
     }
 }
 
-@media (max-width: 1550px) {
+@media (max-width: 1600px) {
     .label {
         font-size: 1.2rem;
     }
@@ -233,22 +234,19 @@
     }
 
     .bar_icon {
-        max-width: 70px;
+        max-width: 100px;
+    }
+
+    .label_icon {
+        left: -40px;
+
+        width: 200px;
+
     }
 
     .price_text {
         .value {
             min-width: 90px;
         }
-    }
-}
-
-
-@media (max-width: 1450px) {
-
-    .label_icon {
-        left: -40px;
-
-        width: 250px;
     }
 }
