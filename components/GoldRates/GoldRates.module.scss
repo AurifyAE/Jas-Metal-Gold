@@ -24,20 +24,25 @@
 .label_icon {
     position: relative;
     top: -10px;
-    left: -46px;
+    left: -45px;
     flex-shrink: 0;
-    height: auto;
-    width: 320px;
+    // width: 320px;
+
+    /* RESPONSIVE SIZE */
+    width: 33vh; // primary scaling unit
+    max-width: 320px; // upper safety
+    min-width: 160px; // lower safety
 
     img {
-        height: 100%;
         width: 100%;
+        height: auto;
         object-fit: contain;
     }
 }
 
+/* MAIN PRICE TEXT */
 .price_text {
-    font-size: 1.5rem;
+    font-size: 2.2vh; // was 1.5rem
     font-weight: 400;
     color: white;
     display: flex;
@@ -47,6 +52,7 @@
     .label {
         color: rgba(255, 255, 255, 0.55);
         font-weight: 400;
+        font-size: 2vh;
     }
 
     .value {
@@ -54,6 +60,7 @@
         font-weight: 600;
         text-align: center;
         min-width: 100px;
+        font-size: 2.2vh;
     }
 
     .separator {
@@ -68,16 +75,17 @@
     font-family: var(--font-primary);
 }
 
+/* BID / ASK LABEL */
 .label {
     color: #ffffff;
-    font-size: 1.75rem;
+    font-size: 2.6vh; // was 1.75rem
     font-weight: 500;
 }
 
+/* BID / ASK VALUES */
 .askValue,
 .bidValue {
-    // font-size: 2.188rem;
-    font-size: 2.5rem;
+    font-size: 4vh;
     font-weight: 700;
     min-width: 200px;
     padding: 10px;
@@ -113,107 +121,62 @@
 }
 
 .bar_icon {
-    grid-row-start: 1;
-    grid-row-end: 3;
-    grid-column-start: 3;
-    grid-column-end: 4;
-
-    width: 100%;
+    grid-row: 1 / 3;
+    grid-column: 3 / 4;
     max-width: 120px;
-    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: auto;
 }
 
-// -------------- these are new code pasted from other file-----------
+/* --------------------------------------------------
+   ZOOM & RESPONSIVE RULES
+   FONT SIZES LOCKED (NO CHANGE)
+-------------------------------------------------- */
+
 :global(html.zoom-110),
 :global(html.zoom-125),
-:global(html.zoom-150) {
-    .price_text {
-        font-size: 1.2rem;
-    }
-
-    .label_icon {
-        left: -45px;
-    }
-
-    .label {
-        font-size: 1.2rem;
-    }
-
-    .price_text {
-        .value {
-            min-width: 60px;
-        }
-    }
-
-    .askValue,
-    .bidValue {
-        font-size: 1.6rem;
-        min-width: 100px;
-    }
+:global(html.zoom-150),
+:global(html.zoom-175) {
+    // .label_icon {
+    //     left: -45px;
+    // }
 
     .bar_icon {
         max-width: 80px;
     }
-}
 
-:global(html.zoom-125) {
-    .label_icon {
-        left: -46px;
+    /* MAIN PRICE TEXT */
+    .price_text {
+
+        .value {
+            min-width: fit-content;
+        }
+
     }
+
+    /* BID / ASK VALUES */
+    .askValue,
+    .bidValue {
+
+        min-width: fit-content;
+
+    }
+
 }
 
 :global(html.zoom-150) {
-    .label_icon {
-        width: 200px;
-        left: -36px;
-    }
 
-    .price_text {
-        font-size: 1rem;
+    .label_icon {
+        left: -32px;
     }
 }
 
-:global(html.zoom-175) {
-    .label_icon {
-        height: 50px;
-        left: -30px;
-    }
-
-    .bar_icon {
-        max-width: 50px;
-    }
-
-    .price_text {
-        font-size: 0.8rem;
-    }
-}
-
+/* Large Screens */
 @media (min-width: 2000px) {
-
-    .askValue,
-    .bidValue {
-        font-size: 4rem;
-    }
-
-    .price_text {
-        font-size: 2rem;
-    }
-
-    .bid,
-    .ask {
-        gap: 25px;
-    }
-
     .bar_icon {
         max-width: 200px;
-    }
-
-    .label {
-        font-size: 2rem;
     }
 
     .price_left {
@@ -221,32 +184,14 @@
     }
 }
 
+/* Smaller Screens */
 @media (max-width: 1600px) {
-    .label {
-        font-size: 1.2rem;
-    }
-
-    .askValue,
-    .bidValue {
-        min-width: 90px;
-        font-size: 1.5rem;
-        font-weight: 500;
-    }
-
     .bar_icon {
         max-width: 100px;
     }
 
-    .label_icon {
-        left: -40px;
-
-        width: 200px;
-
-    }
-
-    .price_text {
-        .value {
-            min-width: 90px;
-        }
-    }
+    // .label_icon {
+    //     left: -40px;
+    //     width: 200px;
+    // }
 }
