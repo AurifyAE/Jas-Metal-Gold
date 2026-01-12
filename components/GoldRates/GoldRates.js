@@ -50,6 +50,12 @@ const GoldRates = () => {
                     fetchServerURL(),
                 ]);
 
+                // Add null checks to prevent errors
+                if (!spotRes || !spotRes.data || !spotRes.data.info) {
+                    console.error('Invalid spot rates response');
+                    return;
+                }
+
                 const info = spotRes.data.info;
 
                 setCommodities(info.commodities || []);
@@ -57,9 +63,23 @@ const GoldRates = () => {
                 setGoldAskSpread(info.goldAskSpread || 0);
                 setSilverBidSpread(info.silverBidSpread || 0);
                 setSilverAskSpread(info.silverAskSpread || 0);
-                setServerURL(serverRes.data.info.serverURL);
+
+                // Add null check for server URL
+                if (serverRes && serverRes.data && serverRes.data.info && serverRes.data.info.serverURL) {
+                    setServerURL(serverRes.data.info.serverURL);
+                } else {
+                    console.error('Invalid server URL response');
+                }
             } catch (err) {
                 console.error('Failed to load initial data', err);
+                // Log more details for debugging
+                if (err.response) {
+                    console.error('API Error:', err.response.status, err.response.data);
+                } else if (err.request) {
+                    console.error('Network Error:', err.request);
+                } else {
+                    console.error('Error:', err.message);
+                }
             }
         };
 
@@ -74,19 +94,34 @@ const GoldRates = () => {
 
         const socket = io(serverURL, {
             query: { secret: process.env.NEXT_PUBLIC_SOCKET_SECRET_KEY },
-            transports: ['websocket'],
+            transports: ['websocket', 'polling'], // Add polling as fallback for TVs
             withCredentials: true,
+            timeout: 20000, // 20 second timeout
+            reconnection: true,
+            reconnectionDelay: 1000,
+            reconnectionAttempts: 5,
         });
 
         socket.on('connect', () => {
+            console.log('Socket connected successfully');
             socket.emit('request-data', ['GOLD', 'SILVER']);
+        });
+
+        socket.on('connect_error', (error) => {
+            console.error('Socket connection error:', error);
+        });
+
+        socket.on('disconnect', (reason) => {
+            console.log('Socket disconnected:', reason);
         });
 
         socket.on('market-data', (data) => {
             setMarketData((prev) => ({ ...prev, [data.symbol]: data }));
         });
 
-        return () => socket.disconnect();
+        return () => {
+            socket.disconnect();
+        };
     }, [serverURL]);
 
     // ============================================================================

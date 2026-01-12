@@ -15,6 +15,8 @@ export const fetchServerURL = async () => {
         return response;
     } catch (error) {
         console.error('Error fetching server URL:', error);
+        // Return a rejected promise or a default response to prevent undefined errors
+        throw error;
     }
 };
 
