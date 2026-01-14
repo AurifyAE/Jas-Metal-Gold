@@ -124,7 +124,10 @@ html.zoom-175,
 html.zoom-200 {
   font-size: 60% !important;
 }
-
+.tv-embed-widget-wrapper__body.js-embed-widget-body
+{
+  border:0 !important;
+}
 @media (max-width:1366px) {
   html {
     font-size: 100%;

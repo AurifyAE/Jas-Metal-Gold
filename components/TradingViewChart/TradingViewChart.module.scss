@@ -7,24 +7,47 @@
   padding: 8px;
 }
 
+/* Main widget container */
 .table {
   width: 100%;
   height: 100%;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
-/* Remove TradingView branding clutter */
-:global(.tv-widget-footer),
+/* TradingView containers */
+:global(.tradingview-widget-container),
+:global(.tradingview-widget-container__widget),
+:global(.tv-market-quotes),
+:global(.tv-market-quotes__table) {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* Remove header & footer */
+:global(.tv-market-quotes__header),
 :global(.tv-market-quotes__footer),
-:global(.tv-market-quotes__header) {
+:global(.tv-widget-footer),
+:global(.tradingview-widget-copyright) {
   display: none !important;
 }
 
-/* Fine tune row appearance */
-:global(.tv-market-quotes__row) {
-  border-bottom: 1px solid rgba(212, 175, 55, 0.15) !important;
+/* ❌ Remove ALL row borders */
+:global(.tv-market-quotes__row),
+:global(.tv-market-quotes__cell) {
+  border: none !important;
 }
 
-/* Green / Red emphasis */
+/* Remove hover / focus outlines */
+:global(.tv-market-quotes *:focus),
+:global(.tv-market-quotes *:hover) {
+  outline: none !important;
+}
+
+/* Price colors (optional) */
 :global(.tv-market-quotes__change--positive) {
   color: #2ecc71 !important;
 }
@@ -32,4 +55,3 @@
 :global(.tv-market-quotes__change--negative) {
   color: #e74c3c !important;
 }
- 

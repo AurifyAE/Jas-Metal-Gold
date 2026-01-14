@@ -7,7 +7,10 @@ export default function TradingViewMarketTable() {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    if (!containerRef.current || containerRef.current.children.length > 0) return;
+    if (!containerRef.current) return;
+
+    // Prevent duplicate widget load
+    if (containerRef.current.querySelector("script")) return;
 
     const script = document.createElement("script");
     script.src =
@@ -15,26 +18,29 @@ export default function TradingViewMarketTable() {
     script.async = true;
 
     script.innerHTML = JSON.stringify({
+      colorTheme: "dark",
+      locale: "en",
+      largeChartUrl: "",
+      isTransparent: false,
+      
+      showSymbolLogo: true,
+      backgroundColor: "#000000",
       width: "100%",
       height: "100%",
       symbolsGroups: [
-
         {
+          name: "Indices",
           symbols: [
-            { name: "FX:AEDUSD", displayName: "AED / USD" },
-            { name: "FX:AEDEUR", displayName: "AED / EUR" },
-            { name: "FX:AEDINR", displayName: "AED / INR" },
-            { name: "FX:AEDSGD", displayName: "AED / SGD" },
-            { name: "FX:EURUSD", displayName: "EUR / USD" },
-            { name: "FX:AEDGBP", displayName: "AED / GBP" },
-            { name: "FX:AEDMYR", displayName: "AED / MYR" },
-          ],
+            { name: "FX_IDC:AEDUSD", displayName: "AED / USD" },
+            { name: "FX_IDC:AEDEUR", displayName: "AED / EUR" },
+            { name: "FX_IDC:AEDINR", displayName: "AED / INR" },
+            { name: "FX_IDC:AEDSGD", displayName: "AED / SGD" },
+            { name: "TICKMILL:EURUSD", displayName: "EUR / USD" },
+            { name: "FX_IDC:AEDGBP", displayName: "AED / GBP" },
+            { name: "FX_IDC:AEDMYX", displayName: "AED / MYX" }
+          ]
         }
-      ],
-      showSymbolLogo: true,
-      colorTheme: "dark",
-      isTransparent: true,
-      locale: "en",
+      ]
     });
 
     containerRef.current.appendChild(script);
@@ -42,7 +48,13 @@ export default function TradingViewMarketTable() {
 
   return (
     <div className={styles.wrapper}>
-      <div ref={containerRef} className={styles.table} />
+      <div
+        ref={containerRef}
+        className={`tradingview-widget-container ${styles.table}`}
+      >
+        <div className="tradingview-widget-container__widget" />
+         
+      </div>
     </div>
   );
 }
