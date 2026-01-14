@@ -43,7 +43,10 @@ const GoldRates = () => {
     // INITIAL DATA (SPREADS + SERVER)
     // ============================================================================
     useEffect(() => {
-        const loadInitialData = async () => {
+        const loadInitialData = async (retryCount = 0) => {
+            const maxRetries = 3;
+            const retryDelay = 2000; // 2 seconds
+
             try {
                 const [spotRes, serverRes] = await Promise.all([
                     fetchSpotRates(adminId),
@@ -53,6 +56,10 @@ const GoldRates = () => {
                 // Add null checks to prevent errors
                 if (!spotRes || !spotRes.data || !spotRes.data.info) {
                     console.error('Invalid spot rates response');
+                    if (retryCount < maxRetries) {
+                        console.log(`Retrying... (${retryCount + 1}/${maxRetries})`);
+                        setTimeout(() => loadInitialData(retryCount + 1), retryDelay);
+                    }
                     return;
                 }
 
@@ -69,6 +76,10 @@ const GoldRates = () => {
                     setServerURL(serverRes.data.info.serverURL);
                 } else {
                     console.error('Invalid server URL response');
+                    if (retryCount < maxRetries) {
+                        console.log(`Retrying server URL... (${retryCount + 1}/${maxRetries})`);
+                        setTimeout(() => loadInitialData(retryCount + 1), retryDelay);
+                    }
                 }
             } catch (err) {
                 console.error('Failed to load initial data', err);
@@ -79,6 +90,14 @@ const GoldRates = () => {
                     console.error('Network Error:', err.request);
                 } else {
                     console.error('Error:', err.message);
+                }
+                
+                // Retry logic for TV browsers
+                if (retryCount < maxRetries) {
+                    console.log(`Retrying after error... (${retryCount + 1}/${maxRetries})`);
+                    setTimeout(() => loadInitialData(retryCount + 1), retryDelay * (retryCount + 1));
+                } else {
+                    console.error('Max retries reached. Please check your network connection.');
                 }
             }
         };
@@ -92,14 +111,29 @@ const GoldRates = () => {
     useEffect(() => {
         if (!serverURL) return;
 
+        // Force polling transport for TV browsers (more reliable)
+        const isTVBrowser = () => {
+            if (typeof window === 'undefined') return false;
+            const ua = window.navigator.userAgent.toLowerCase();
+            return ua.includes('smart-tv') || 
+                   ua.includes('smarttv') || 
+                   ua.includes('tizen') || 
+                   ua.includes('webos') ||
+                   ua.includes('tv');
+        };
+
         const socket = io(serverURL, {
             query: { secret: process.env.NEXT_PUBLIC_SOCKET_SECRET_KEY },
-            transports: ['websocket', 'polling'], // Add polling as fallback for TVs
+            // Use polling first for TV browsers, websocket for others
+            transports: isTVBrowser() ? ['polling', 'websocket'] : ['websocket', 'polling'],
             withCredentials: true,
-            timeout: 20000, // 20 second timeout
+            timeout: 30000, // 30 second timeout for TV browsers
             reconnection: true,
-            reconnectionDelay: 1000,
-            reconnectionAttempts: 5,
+            reconnectionDelay: 2000, // Start with 2 seconds
+            reconnectionDelayMax: 10000, // Max 10 seconds
+            reconnectionAttempts: 10, // More attempts for TV browsers
+            forceNew: false,
+            upgrade: !isTVBrowser(), // Don't upgrade to websocket on TV browsers
         });
 
         socket.on('connect', () => {
@@ -109,10 +143,31 @@ const GoldRates = () => {
 
         socket.on('connect_error', (error) => {
             console.error('Socket connection error:', error);
+            // Try to reconnect with different transport
+            if (error.type === 'TransportError') {
+                console.log('Trying alternative transport...');
+            }
         });
 
         socket.on('disconnect', (reason) => {
             console.log('Socket disconnected:', reason);
+            if (reason === 'io server disconnect') {
+                // Server disconnected, reconnect manually
+                socket.connect();
+            }
+        });
+
+        socket.on('reconnect', (attemptNumber) => {
+            console.log('Socket reconnected after', attemptNumber, 'attempts');
+            socket.emit('request-data', ['GOLD', 'SILVER']);
+        });
+
+        socket.on('reconnect_error', (error) => {
+            console.error('Socket reconnection error:', error);
+        });
+
+        socket.on('reconnect_failed', () => {
+            console.error('Socket reconnection failed. Please refresh the page.');
         });
 
         socket.on('market-data', (data) => {
