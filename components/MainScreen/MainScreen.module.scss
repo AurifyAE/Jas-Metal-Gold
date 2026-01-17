@@ -42,8 +42,8 @@
 }
 
 .video_screen {
-    max-height: 400px;
-    min-height: 340px;
+    flex: 0 0 40%;
+    min-height: 0;
     width: 100%;
 
     iframe {
@@ -53,7 +53,9 @@
 }
 
 .chart_section {
-    min-height: 350px;
+    // min-height: 350px;
+    flex: 0 0 40%;
+    min-height: 0;
 }
 
 .logo_date_sec {
@@ -120,7 +122,7 @@
         justify-content: center;
         gap: 25px;
         padding-left: 100px;
-        height: inherit;
+        height: 100%;
 
         .marquee_track {
             display: flex;
@@ -180,14 +182,14 @@
         min-height: calc(100dvh - 100px);
     }
 
-    .video_screen {
-        max-height: 300px;
-        min-height: 210px;
-    }
+    // .video_screen {
+    //     max-height: 300px;
+    //     min-height: 210px;
+    // }
 
-    .chart_section {
-        min-height: 200px;
-    }
+    // .chart_section {
+    //     min-height: 200px;
+    // }
 
     .main_logo {
         width: 35%;
@@ -210,14 +212,14 @@
 /* -------------------- SMALLER DESKTOPS -------------------- */
 
 @media (max-width: 1550px) {
-    .chart_section {
-        min-height: 250px;
-    }
+    // .chart_section {
+    //     min-height: 250px;
+    // }
 
-    .video_screen {
-        max-height: 250px;
-        min-height: 200px;
-    }
+    // .video_screen {
+    //     max-height: 250px;
+    //     min-height: 200px;
+    // }
 
     .marquee_Sec {
         height: 45px;

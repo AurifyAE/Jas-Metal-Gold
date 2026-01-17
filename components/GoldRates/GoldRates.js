@@ -126,7 +126,8 @@ const GoldRates = () => {
             query: { secret: process.env.NEXT_PUBLIC_SOCKET_SECRET_KEY },
             // Use polling first for TV browsers, websocket for others
             transports: isTVBrowser() ? ['polling', 'websocket'] : ['websocket', 'polling'],
-            withCredentials: true,
+            // withCredentials: true,
+            withCredentials: false,
             timeout: 30000, // 30 second timeout for TV browsers
             reconnection: true,
             reconnectionDelay: 2000, // Start with 2 seconds

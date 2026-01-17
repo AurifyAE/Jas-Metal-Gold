@@ -22,7 +22,6 @@ const CommodityTable = ({
             {commodities.map((item, index) => {
                 const metalName = getMetalName(item.metal);
                 const { bidPrice, askPrice } = calculatePrices(item, metalName);
-                console.log('adadasdasd', item);
 
                 return (
                     <li key={index} className={styles.detail_content_sec}>

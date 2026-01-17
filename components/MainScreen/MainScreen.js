@@ -155,7 +155,8 @@ const MainScreen = () => {
 
     const socket = io(serverURL, {
       transports: ["websocket", "polling"], // Add polling as fallback for TVs
-      withCredentials: true,
+      // withCredentials: true,
+      withCredentials: false,
       query: { secret: process.env.NEXT_PUBLIC_SOCKET_SECRET_KEY },
       timeout: 20000, // 20 second timeout
       reconnection: true,
@@ -281,7 +282,9 @@ const MainScreen = () => {
                 <TradingViewMarketTable />
               </div>
 
-              <YoutubeVideo />
+              <div className={styles.video_screen}>
+                <YoutubeVideo />
+              </div>
             </div>
           </div>
         </div>
