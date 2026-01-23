@@ -155,8 +155,8 @@ function TvScreen() {
     return () => clearInterval(interval);
   }, []);
 
-  
- 
+
+
   return (
     <Box sx={{ minHeight: "100vh", color: "white", padding: "0 2vw ", display: 'flex', alignItems: 'center', backgroundImage: 'linear-gradient(220deg, #1f1f1f, #000)' }}>
       <div className='background_lines'>
@@ -175,7 +175,7 @@ function TvScreen() {
         flexWrap='wrap'
       >
         {/* Side: SpotRate & Date Time */}
-        <Grid item   md={6.5}>
+        <Grid item md={6.5}>
 
 
           <SpotRate />
@@ -185,7 +185,7 @@ function TvScreen() {
         </Grid>
 
         {/* Side: Commodity Table */}
-        <Grid item  md={5.5}
+        <Grid item md={5.5}
           display='flex' flexDirection='column'
           justifyContent='space-between'
         >
@@ -217,10 +217,11 @@ function TvScreen() {
           </Box>
 
         </Grid>
-        <Grid  md={12} sx={{
+        <Grid xs={12} sx={{
           position: 'fixed',
           bottom: '0',
           left: '0',
+          width: '100%'
         }}>
           <NewsTicker newsItems={news} />
         </Grid>
