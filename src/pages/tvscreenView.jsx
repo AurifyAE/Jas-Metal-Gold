@@ -190,7 +190,7 @@ function TvScreen() {
         {/* Side: Commodity Table */}
         <Grid item md={5.5}
           display='flex' flexDirection='column'
-          justifyContent='center'
+          justifyContent='space-evenly'
         >
 
           <Box className="flex flex-row items-center justify-around ">
