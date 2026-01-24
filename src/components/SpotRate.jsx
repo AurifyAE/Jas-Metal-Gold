@@ -105,14 +105,14 @@ const SpotRate = () => {
         background: "linear-gradient(180deg,#1a1a1a,#0d0d0d)",
         borderRadius: "18px",
         padding: "1vw",
-        mb: "2vw",
+        mb: "1.7vw",
       }}
     >
       {/* FLOAT LABEL */}
       <Box
         sx={{
           position: "absolute",
-          top: "-1.3vw",
+          top: "-0.7vw",
           left: "-1vw",
           width: "13vw",
         }}

@@ -41,6 +41,7 @@ const WorldClock = () => {
                     fontSize: "1.5vw",
                     color: "#d9a441",
                     lineHeight: 1.2,
+                    fontWeight:'700',
                     background: "linear-gradient(#d68e15, #b46a11)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
@@ -58,6 +59,7 @@ const WorldClock = () => {
                     background: "linear-gradient(#d68e15, #b46a11)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
+                    fontWeight:'700',
                     backgroundClip: "text",
                     color: "transparent",
                 }}

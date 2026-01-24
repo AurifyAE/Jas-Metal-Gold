@@ -28,6 +28,8 @@ export default function TradingViewMarketTable() {
                 {
                     name: "Forex",
                     symbols: [
+                        { name: "FX_IDC:USDAED", displayName: "USD / AED" },
+
                         { name: "FX_IDC:AEDUSD", displayName: "AED / USD" },
                         { name: "FX_IDC:AEDEUR", displayName: "AED / EUR" },
                         { name: "FX_IDC:AEDINR", displayName: "AED / INR" },

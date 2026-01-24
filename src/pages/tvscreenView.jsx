@@ -179,22 +179,25 @@ function TvScreen() {
 
 
           <SpotRate />
-          <CommodityTable commodities={commodities} />
-
+          <Box sx={{
+            height: '19vw'
+          }}>
+            <TradingViewMarketTable />
+          </Box>
 
         </Grid>
 
         {/* Side: Commodity Table */}
         <Grid item md={5.5}
           display='flex' flexDirection='column'
-          justifyContent='space-between'
+          justifyContent='center'
         >
 
           <Box className="flex flex-row items-center justify-around ">
             <Box
               sx={{
                 height: "auto",
-                width: "20vw",
+                width: "25vw",
                 marginBottom: '1vw'
               }}
             >
@@ -204,17 +207,15 @@ function TvScreen() {
             <WorldClock />
 
           </Box>
-          <Box sx={{
-            height: '18vw'
-          }}>
-            <TradingViewMarketTable />
-          </Box>
-          <Box sx={{
+          <CommodityTable commodities={commodities} />
+
+
+          {/* <Box sx={{
             height: '15vw',
             marginTop: '0.2vw'
           }}>
             <YoutubeVideo />
-          </Box>
+          </Box> */}
 
         </Grid>
         <Grid xs={12} sx={{
